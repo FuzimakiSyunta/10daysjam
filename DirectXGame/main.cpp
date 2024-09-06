@@ -6,6 +6,7 @@
 #include "PrimitiveDrawer.h"
 #include "TextureManager.h"
 #include "WinApp.h"
+#include "TitleScene.h"
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -17,6 +18,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	AxisIndicator* axisIndicator = nullptr;
 	PrimitiveDrawer* primitiveDrawer = nullptr;
 	GameScene* gameScene = nullptr;
+	TitleScene* titleScene = nullptr;
 
 	// ゲームウィンドウの作成
 	win = WinApp::GetInstance();
@@ -61,6 +63,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	gameScene = new GameScene();
 	gameScene->Initialize();
 
+	//タイトルシーンの初期化
+	titleScene = new TitleScene();
+	titleScene->Initialize();
+
+
+	SceneType sceneNo = SceneType::kTitle;
+
 	// メインループ
 	while (true) {
 		// メッセージ処理
@@ -72,6 +81,23 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		imguiManager->Begin();
 		// 入力関連の毎フレーム処理
 		input->Update();
+		switch (sceneNo) { 
+			titleScene->Update();
+
+			if (titleScene->IsSceneEnd()) {
+				//次のシーンの値を代入してシーン切り替え
+				sceneNo = titleScene->NextScene();
+				//タイトルシーンの初期化、フラグリセット等
+				titleScene->sceneReset();
+			}
+			break;
+		case SceneType::kGamePlay:
+			//ゲームシーンの毎フレーム処理
+			gameScene->Update();
+			if (input->TriggerKey(DIK_RETURN)) {
+				sceneNo = SceneType::kTitle;
+			}
+		}
 		// ゲームシーンの毎フレーム処理
 		gameScene->Update();
 		// 軸表示の更新
