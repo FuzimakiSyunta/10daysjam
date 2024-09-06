@@ -19,12 +19,16 @@ private:
 	void Scroll();
 
 private:
-	//std::unique_ptr<Input> input_ = nullptr;
 	Input* input_ = nullptr;
+
+	#pragma region 画像読み込み
+
 	//テクスチャハンドル
 	uint32_t playerTexture_ = 0;
 	//スプライト
 	std::unique_ptr<Sprite> playerSprite_ = nullptr;
+
+	#pragma endregion
 
 	#pragma region 座標関連
 
