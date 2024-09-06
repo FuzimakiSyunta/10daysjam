@@ -26,7 +26,7 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 	player_->Update();
-	stage_->Update();
+	stage_->Update(player_->GetScroll());
 	bomm_->Update();
 }
 
