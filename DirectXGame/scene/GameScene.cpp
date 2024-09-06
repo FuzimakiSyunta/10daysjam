@@ -16,11 +16,15 @@ void GameScene::Initialize() {
 	//プレイヤー
 	player_ = std::make_unique<Player>();
 	player_->Initialize();
+	//ステージ
+	stage_ = std::make_unique<Stage>();
+	stage_->Initialize();
 
 }
 
 void GameScene::Update() {
 	player_->Update();
+	stage_->Update();
 }
 
 void GameScene::Draw() {
@@ -58,6 +62,7 @@ void GameScene::Draw() {
 	// 前景スプライト描画前処理
 	Sprite::PreDraw(commandList);
 
+	stage_->Draw();
 	player_->Draw();
 
 	/// <summary>

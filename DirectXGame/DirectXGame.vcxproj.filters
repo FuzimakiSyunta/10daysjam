@@ -58,6 +58,12 @@
     <Filter Include="ヘッダー ファイル\player">
       <UniqueIdentifier>{b1645c72-6729-4db4-bf91-e83e35ccf209}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\stage">
+      <UniqueIdentifier>{55dd8574-7c5d-4d05-b13a-592a51a7fc8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\stage">
+      <UniqueIdentifier>{b5e513e4-bae6-4428-88da-571308251735}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -77,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>ソース ファイル\player</Filter>
+    </ClCompile>
+    <ClCompile Include="stage.cpp">
+      <Filter>ソース ファイル\stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="player.h">
       <Filter>ヘッダー ファイル\player</Filter>
+    </ClInclude>
+    <ClInclude Include="stage.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
