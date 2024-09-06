@@ -87,6 +87,9 @@
     <ClCompile Include="stage.cpp">
       <Filter>ソース ファイル\stage</Filter>
     </ClCompile>
+    <ClCompile Include="Bomm.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3d\ViewProjection.h">
@@ -175,12 +178,6 @@
     </ClInclude>
     <ClInclude Include="3d\ObjectColor.h">
       <Filter>ヘッダー ファイル\3d</Filter>
-    </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>ヘッダー ファイル\player</Filter>
-    </ClInclude>
-    <ClInclude Include="stage.h">
-      <Filter>ヘッダー ファイル\stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

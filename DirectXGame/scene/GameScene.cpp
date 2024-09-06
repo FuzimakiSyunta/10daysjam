@@ -19,12 +19,15 @@ void GameScene::Initialize() {
 	//ステージ
 	stage_ = std::make_unique<Stage>();
 	stage_->Initialize();
-
+	// 地雷
+	bomm_ = std::make_unique<Bomm>();
+	bomm_->Initialize();
 }
 
 void GameScene::Update() {
 	player_->Update();
 	stage_->Update(player_->GetScroll());
+	bomm_->Update();
 }
 
 void GameScene::Draw() {
@@ -64,7 +67,7 @@ void GameScene::Draw() {
 
 	stage_->Draw();
 	player_->Draw();
-
+	bomm_->Draw();
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
