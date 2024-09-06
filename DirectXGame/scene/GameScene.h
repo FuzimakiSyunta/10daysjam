@@ -8,6 +8,10 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 
+#include "player.h"
+#include "stage.h"
+#include "Bomm.h"
+
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -44,6 +48,9 @@ private: // メンバ変数
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
 
+	std::unique_ptr<Player> player_;
+	std::unique_ptr<Stage> stage_;
+	std::unique_ptr<Bomm> bomm_;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

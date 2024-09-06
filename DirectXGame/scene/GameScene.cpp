@@ -11,9 +11,24 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
+
+
+	//プレイヤー
+	player_ = std::make_unique<Player>();
+	player_->Initialize();
+	//ステージ
+	stage_ = std::make_unique<Stage>();
+	stage_->Initialize();
+	// 地雷
+	bomm_ = std::make_unique<Bomm>();
+	bomm_->Initialize();
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+	player_->Update();
+	stage_->Update();
+	bomm_->Update();
+}
 
 void GameScene::Draw() {
 
@@ -50,6 +65,9 @@ void GameScene::Draw() {
 	// 前景スプライト描画前処理
 	Sprite::PreDraw(commandList);
 
+	stage_->Draw();
+	player_->Draw();
+	bomm_->Draw();
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
