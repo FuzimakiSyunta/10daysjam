@@ -12,6 +12,12 @@ public:
 
 	void Draw();
 
+	float GetScroll() { return scrollY; }
+
+private:
+
+	void Scroll();
+
 private:
 	//std::unique_ptr<Input> input_ = nullptr;
 	Input* input_ = nullptr;
@@ -20,8 +26,16 @@ private:
 	//スプライト
 	std::unique_ptr<Sprite> playerSprite_ = nullptr;
 
-	//プレイヤー座標
+	#pragma region 座標関連
+
 	Vector2 pos;
+	Vector2 localPos;
 	const float speed = 3.0f;
 	const Vector2 center = {240, 360};
+	float growSpeed = 3.0f;
+
+	#pragma endregion
+
+	//スクロールの値
+	float scrollY = 0.0f;
 };

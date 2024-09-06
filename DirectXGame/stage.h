@@ -8,13 +8,14 @@ public:
 
 	void Initialize();
 
-	void Update();
+	void Update(float scroll);
 
 	void Draw();
 
 private:
 
 	Vector2 pos;
+	float scrollY;
 
 	//開始時の画像
 	uint32_t startStageTexture_ = 0;
