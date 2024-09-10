@@ -63,7 +63,7 @@ void Player::Animation() {
 		flame = 0;
 	}
 
-	sprite_[flame]->SetPosition(localPos);
+	sprite_[flame]->SetPosition(Subtract(pos,localPos));
 }
 
 void Player::Draw() {

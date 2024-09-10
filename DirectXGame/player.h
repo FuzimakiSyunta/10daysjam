@@ -3,6 +3,7 @@
 #include "TextureManager.h"
 #include "Vector2.h"
 #include "Input.h"
+#include "compute.h"
 
 class Player {
 public:
