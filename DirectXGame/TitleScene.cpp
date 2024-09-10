@@ -4,9 +4,11 @@ void TitleScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	//テクスチャ
-	uint32_t textureTitle = TextureManager::Load("Scene/TitleScene.png "); 
+	uint32_t textureTitle1 = TextureManager::Load("Scene/TitleScene1.png "); 
+	uint32_t textureTitle2 = TextureManager::Load("Scene/TitleScene2.png");
 	//スプライト生成
-	spriteTitle_ = Sprite::Create(textureTitle, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
+	spriteTitle_[1] = Sprite::Create(textureTitle1, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
+	spriteTitle_[2] = Sprite::Create(textureTitle2, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
 }
 
 void TitleScene::Update() {
@@ -37,7 +39,7 @@ void TitleScene::Draw() {
 	// 前景スプライト描画前処理
 	Sprite::PreDraw(commandList);
 
-	spriteTitle_->Draw(); 
+	spriteTitle_[1]->Draw(); 
 
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
