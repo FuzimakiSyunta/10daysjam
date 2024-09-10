@@ -13,6 +13,11 @@ void Player::Initialize() {
 	playerTexture_ = TextureManager::Load("player/root.png");
 	playerSprite_.reset(Sprite::Create(playerTexture_, pos));
 
+	for (int j = 0; j < 30; j++) {
+		texture_[j] = TextureManager::Load("player/root.png");
+		sprite_[j].reset(Sprite::Create(texture_[j], pos));
+	}
+
 	#pragma endregion
 }
 
@@ -24,19 +29,23 @@ void Player::Update() {
 	} else if (input_->PushKey(DIK_D)) {
 		pos.x += speed;
 	}
+	
 
 	//ローカルと値を合わせる
 	localPos.x = pos.x;
 
 	#pragma endregion
+	//自動で下に進める
+	pos.y += downSpeed;
 
-	pos.y += growSpeed;
-
-	//スクロール
+	//スクロール関数を呼ぶ
 	Scroll();
+	//座標保存関数を呼ぶ
+	//SavePos();
 
 	//画像の座標更新
 	playerSprite_->SetPosition(localPos);
+	Animation();
 
 	ImGui::Begin("player");
 	ImGui::Text("X:%f Y:%f", pos.x, pos.y);
@@ -46,8 +55,22 @@ void Player::Update() {
 
 }
 
+void Player::Animation() {
+
+	flame++;
+
+	if (flame >= 30) {
+		flame = 0;
+	}
+
+	sprite_[flame]->SetPosition(localPos);
+}
+
 void Player::Draw() {
-	playerSprite_->Draw(); 
+	playerSprite_->Draw();
+	for (int j = 0; j < 30; j++) {
+		sprite_[j]->Draw();
+	}
 }
 
 void Player::Scroll() {
@@ -57,4 +80,24 @@ void Player::Scroll() {
 	}
 	//ローカルの座標更新
 	localPos.y = pos.y - scrollY;
+}
+
+void Player::SavePos() {
+	
+
+	#pragma region
+
+	i++;
+	if (i >= 5) {
+		count++;
+		//bPos[count] = pos;
+	}
+
+	#pragma endregion
+
+	ImGui::Begin("SavePos");
+	ImGui::Text("count:%d i:%d", count,i);
+	ImGui::Text("bPos[50] X:%f,Y:%f", bPos[30].x, bPos[30].y);
+	ImGui::End();
+
 }

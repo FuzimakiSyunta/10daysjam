@@ -65,9 +65,9 @@ void GameScene::Draw() {
 	// 前景スプライト描画前処理
 	Sprite::PreDraw(commandList);
 
-	stage_->Draw();
+	//stage_->Draw();
 	player_->Draw();
-	bomm_->Draw();
+	//bomm_->Draw();
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
