@@ -21,6 +21,12 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 	player_->Update();
+	if (input_->TriggerKey(DIK_RETURN)) {
+		isGameClear = true;
+	}
+	if (input_->TriggerKey(DIK_SPACE)) {
+		isGameOver = true;
+	}
 }
 
 void GameScene::Draw() {
@@ -68,4 +74,9 @@ void GameScene::Draw() {
 	Sprite::PostDraw();
 
 #pragma endregion
+}
+
+void GameScene::SceneReset() { 
+	isGameClear = false;
+	isGameOver = false;
 }
