@@ -1,4 +1,5 @@
 #pragma once
+#include "DirectXCommon.h"
 #include "Scene.h"
 #include "Sprite.h"
 #include "TextureManager.h"
@@ -28,6 +29,7 @@ public:
 	SceneType NextScene() { return SceneType::kTitle; }
 
 private:
+	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Sprite* clearSprite_ = nullptr;
 };

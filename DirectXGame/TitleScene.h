@@ -8,10 +8,6 @@
 
 class TitleScene {
 public:
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
-	~TitleScene();
 
 	/// <summary>
 	/// 初期化
@@ -34,6 +30,8 @@ public:
 
 	bool IsSceneEnd() { return isSceneEnd; }
 	SceneType NextScene() { return SceneType::kGamePlay; }
+
+
 
 private://メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;

@@ -8,7 +8,6 @@
 #include "WinApp.h"
 #include "TitleScene.h"
 #include "GameClear.h"
-#include "GameOver.h"
 #include "Scene.h"
 
 // Windowsアプリでのエントリーポイント(main関数)
@@ -23,7 +22,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	GameScene* gameScene = nullptr;
 	TitleScene* titleScene = nullptr;
 	GameClear* gameClearScene = nullptr;
-	GameOver* gameOverScene = nullptr;
 
 	// ゲームウィンドウの作成
 	win = WinApp::GetInstance();
@@ -76,10 +74,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	gameClearScene = new GameClear();
 	gameClearScene->Initialize();
 
-	//ゲームオーバーシーンの初期化
-	gameOverScene = new GameOver();
-	gameOverScene->Initialize();
-
 
 	SceneType sceneNo = SceneType::kTitle;
 
@@ -97,6 +91,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		switch (sceneNo) { 
 		case SceneType::kTitle:
 			titleScene->Update();
+
+			gameScene->SceneReset();
+
 			if (titleScene->IsSceneEnd()) {
 				//次のシーンの値を代入してシーン切り替え
 				sceneNo = titleScene->NextScene();
@@ -107,20 +104,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		case SceneType::kGamePlay:
 			//ゲームシーンの毎フレーム処理
 			gameScene->Update();
-
-			/*if (input->TriggerKey(DIK_RETURN)) {
-				sceneNo = SceneType::kTitle;
-			}*/
 			
 			if (gameScene->IsGameClear()) {
-				//次のシーンの値を代入してシーン切り替え
+				// 次のシーンの値を代入してシーン切り替え
 				sceneNo = gameScene->ClearScene();
-				//ゲームシーンの初期化、フラグリセット等
-				gameScene->SceneReset();
-			}else if (gameScene->IsGameOver()) {
-				//次のシーンの値を代入してシーン切り替え
-				sceneNo = gameScene->OverScene();
-				//ゲームシーンの初期化、フラグリセット
+				// ゲームシーンの初期化、フラグリセット等
 				gameScene->SceneReset();
 			}
 			break;
@@ -131,14 +119,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				sceneNo = gameClearScene->NextScene();
 				//タイトルシーンの初期化
 				gameClearScene->SceneReset();
-			}
-		case SceneType::kGameOver:
-			gameClearScene->Update();
-			if (gameOverScene->IsSceneEnd()) {
-				//次のシーンの値を代入してシーン切り替え
-				sceneNo = gameOverScene->NextScene();
-				//タイトルシーンの初期化
-				gameOverScene->SceneReset();
 			}
 		}
 		// ゲームシーンの毎フレーム処理
@@ -160,9 +140,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			break;
 		case SceneType::kGameClear:
 			gameClearScene->Draw();
-			break;
-		case SceneType::kGameOver:
-			gameOverScene->Draw();
 			break;
 		}
 		// 軸表示の描画

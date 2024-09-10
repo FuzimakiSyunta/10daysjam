@@ -10,8 +10,6 @@ void GameScene::Initialize() {
 
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
-	audio_ = Audio::GetInstance();
-
 
 	//プレイヤー
 	player_ = std::make_unique<Player>();
@@ -21,11 +19,8 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 	player_->Update();
-	if (input_->TriggerKey(DIK_RETURN)) {
-		isGameClear = true;
-	}
 	if (input_->TriggerKey(DIK_SPACE)) {
-		isGameOver = true;
+		isGameClear = true;
 	}
 }
 
@@ -78,5 +73,4 @@ void GameScene::Draw() {
 
 void GameScene::SceneReset() { 
 	isGameClear = false;
-	isGameOver = false;
 }
