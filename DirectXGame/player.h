@@ -14,6 +14,7 @@ public:
 
 	float GetScroll() { return scrollY; }
 
+
 private:
 
 	void Scroll();
@@ -33,6 +34,10 @@ private:
 	const float speed = 3.0f;
 	const Vector2 center = {240, 360};
 	float growSpeed = 3.0f;
+
+	////デバック
+	//const float speed = 0.0f;
+	//float growSpeed = 0.0f;
 
 	#pragma endregion
 
