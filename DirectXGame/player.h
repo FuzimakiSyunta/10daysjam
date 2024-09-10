@@ -49,7 +49,7 @@ private:
 
 	Vector2 pos;
 	Vector2 localPos;
-	const float speed = 3.0f;
+	const float speed = 2.0f;
 	const Vector2 center = {240, 360};
 	float downSpeed = 3.0f;
 
