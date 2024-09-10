@@ -9,6 +9,7 @@
 // 減算
 Vector3 Subtract(Vector3 v1, Vector3 v2);
 Vector2 Subtract(Vector2 v1, Vector2 v2);
+Vector2 Subtract(Vector2 v1, float x);
 
 //加算
 Vector3 Add(Vector3 vector1, Vector3 vector2);
@@ -56,3 +57,5 @@ Matrix4x4 Inverse(const Matrix4x4& m1);
 float Length2(Vector3 v);
 
 Vector3 Normalize2(const Vector3& v);
+
+

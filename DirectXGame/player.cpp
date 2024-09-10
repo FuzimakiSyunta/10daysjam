@@ -5,17 +5,19 @@
 void Player::Initialize() {
 	input_ = Input::GetInstance();
 	//座標
-	pos = {center.x - 8, center.y - 258};//円の中心を中央にするために8だけ少しずらしている
+	pos = {center.x , center.y - 400};//円の中心を中央にするために8だけ少しずらしている
 	localPos = pos;
 
 	#pragma region 画像
 
+	//画像の読み込み
 	playerTexture_ = TextureManager::Load("player/root.png");
-	playerSprite_.reset(Sprite::Create(playerTexture_, pos));
 
-	for (int j = 0; j < 30; j++) {
-		texture_[j] = TextureManager::Load("player/root.png");
-		sprite_[j].reset(Sprite::Create(texture_[j], pos));
+
+	//生成
+	for (int j = 0; j < MAX_IMAGE; j++) {
+		sprite_[j].reset(Sprite::Create(playerTexture_, pos));
+		//sprite_[j]->SetAnchorPoint({0.8f, 0.8f});
 	}
 
 	#pragma endregion
@@ -30,6 +32,7 @@ void Player::Update() {
 		pos.x += speed;
 	}
 	
+	Loop();
 
 	//ローカルと値を合わせる
 	localPos.x = pos.x;
@@ -40,41 +43,55 @@ void Player::Update() {
 
 	//スクロール関数を呼ぶ
 	Scroll();
+
 	//座標保存関数を呼ぶ
 	//SavePos();
 
 	//画像の座標更新
-	playerSprite_->SetPosition(localPos);
 	Animation();
 
 	ImGui::Begin("player");
 	ImGui::Text("X:%f Y:%f", pos.x, pos.y);
-	ImGui::Text("X:%f", scrollY);
 	ImGui::End();
 
-
-}
-
-void Player::Animation() {
-
-	flame++;
-
-	if (flame >= 30) {
-		flame = 0;
-	}
-
-	sprite_[flame]->SetPosition(Subtract(pos,localPos));
 }
 
 void Player::Draw() {
-	playerSprite_->Draw();
-	for (int j = 0; j < 30; j++) {
+	for (int j = 0; j < MAX_IMAGE ; j++) {
 		sprite_[j]->Draw();
 	}
 }
 
+void Player::Animation() {
+
+	flame--;
+
+	if (flame < 0) {
+		flame = MAX_IMAGE - 1;
+	}
+
+	for (int j = 0; j < MAX_IMAGE; j++) {
+		if (pos.y >= kScroll) {
+			//画像の座標を速度の数値分ずらす
+			Vector2 p = sprite_[j]->GetPosition();
+			p.y -= downSpeed; 
+			sprite_[j]->SetPosition(p);
+		}
+	}
+	//ずらした座標をセット！
+	sprite_[flame]->SetPosition(localPos);
+}
+
+void Player::Loop() {
+	if (pos.x <= -5) {
+		pos.x = 470;
+	} else if (pos.x >= 475) {
+		pos.x = 0;
+	}
+}
+
 void Player::Scroll() {
-	const float kScroll = 220.0f;
+	
 	if (pos.y >= kScroll) {
 		scrollY = pos.y - kScroll;
 	}
@@ -90,14 +107,12 @@ void Player::SavePos() {
 	i++;
 	if (i >= 5) {
 		count++;
-		//bPos[count] = pos;
 	}
 
 	#pragma endregion
 
 	ImGui::Begin("SavePos");
 	ImGui::Text("count:%d i:%d", count,i);
-	ImGui::Text("bPos[50] X:%f,Y:%f", bPos[30].x, bPos[30].y);
 	ImGui::End();
 
 }

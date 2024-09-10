@@ -16,6 +16,13 @@ Vector2 Subtract(Vector2 v1, Vector2 v2) {
 	return result;
 }
 
+Vector2 Subtract(Vector2 v1, float x) {
+	Vector2 result;
+	result.x = v1.x;
+	result.y = v1.y - x;
+	return result;
+}
+
 //加算
 Vector3 Add(Vector3 vector1, Vector3 vector2) {
 	Vector3 result = {0};
