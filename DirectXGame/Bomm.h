@@ -14,7 +14,7 @@ public:
 	/// <summary>
 	/// 更新
 	/// </summary>
-	void Update();
+	void Update(float Scroll_);
 
 	/// <summary>
 	/// 描画
@@ -31,4 +31,7 @@ private:
 	// 地雷座標
 	Vector2 pos;
 	const Vector2 center = {240, 360};
+
+	float scroll;
+
 };

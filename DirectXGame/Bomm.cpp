@@ -11,7 +11,9 @@ void Bomm::Initialize() {
 	bomsSprite_.reset(Sprite::Create(BomsTexture_, pos));
 }
 
-void Bomm::Update() {
+void Bomm::Update(float scroll_) {
+	scroll = scroll_ * -1;
+	pos.y = scroll;
 	// 画像の座標更新
 	bomsSprite_->SetPosition(pos);
 	////これだと1から6の間
