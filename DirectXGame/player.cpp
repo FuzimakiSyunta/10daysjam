@@ -32,6 +32,7 @@ void Player::Update() {
 		pos.x += speed;
 	}
 	
+	//画面外のループ関数
 	Loop();
 
 	//ローカルと値を合わせる
