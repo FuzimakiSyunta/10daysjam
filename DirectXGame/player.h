@@ -37,6 +37,7 @@ private:
 	//クランプ
 	void Clamp();
 
+
 private:
 	Input* input_ = nullptr;
 
