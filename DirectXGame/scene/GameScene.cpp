@@ -44,12 +44,6 @@ void GameScene::Update() {
 	case StageLevel::kLevel2:
 		stage_->Stage2Update();
 		if (stage_->IsLevel2Clear() == true) {
-			levelNo = stage_->Level2Clear();
-		}
-		break;
-	case StageLevel::kLevel3:
-		stage_->Stage3Update();
-		if (stage_->IsLevel3Clear() == true) {
 			isGameClear = true;
 		}
 	}
@@ -109,9 +103,6 @@ void GameScene::Draw() {
 	case StageLevel::kLevel2:
 		stage_->Stage2Draw();
 		break;
-	case StageLevel::kLevel3:
-		stage_->Stage3Draw();
-		break;
 	}
 	
 	hp_->Draw();
@@ -131,6 +122,7 @@ void GameScene::Draw() {
 
 void GameScene::SceneReset() { 
 	isGameClear = false;
+	levelNo = StageLevel::kLevel1;
 }
 
 int GameScene::GetScore() { 
