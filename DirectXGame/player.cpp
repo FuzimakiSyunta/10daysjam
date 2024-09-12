@@ -8,6 +8,18 @@ void Player::Initialize() {
 	pos = {center.x - 8 , 0 - 8};//円の中心を中央にするために8だけ少しずらしている
 	localPos = pos;
 
+	#pragma region 初期化
+
+	isEnd = false;
+	saveFlame = 0;
+
+	reverseFlag = false;
+	reverseFlame = 0;
+
+	kScroll = 220.0f;
+
+	#pragma endregion
+
 	#pragma region 画像
 
 	//画像の読み込み
@@ -24,7 +36,7 @@ void Player::Initialize() {
 }
 
 void Player::Update() {
-	#pragma region プレイヤーの左右移動
+	#pragma region プレイヤーの移動
 
 	if (input_->PushKey(DIK_A)) {
 		pos.x -= speed;
@@ -38,18 +50,29 @@ void Player::Update() {
 	//ローカルと値を合わせる
 	localPos.x = pos.x;
 
-	#pragma endregion
 	//自動で下に進める
 	pos.y += downSpeed;
+
+	#pragma endregion
+
 
 	//スクロール関数を呼ぶ
 	Scroll();
 
 	//座標保存関数を呼ぶ
-	//SavePos();
+	SavePos();
+	Reverse();
 
 	//画像の座標更新
 	Animation();
+
+	#pragma region デバッグ
+
+		if (input_->PushKey(DIK_W)) {
+			isEnd = true;
+		}
+
+	#pragma endregion
 
 	ImGui::Begin("player");
 	ImGui::Text("X:%f Y:%f", pos.x, pos.y);
@@ -70,13 +93,23 @@ void Player::Animation() {
 	if (flame < 0) {
 		flame = MAX_IMAGE - 1;
 	}
-
-	for (int j = 0; j < MAX_IMAGE; j++) {
-		if (pos.y >= kScroll) {
-			//画像の座標を速度の数値分ずらす
-			Vector2 p = sprite_[j]->GetPosition();
-			p.y -= downSpeed; 
-			sprite_[j]->SetPosition(p);
+	if (isEnd == false) {
+		for (int j = 0; j < MAX_IMAGE; j++) {
+			if (pos.y >= kScroll) {
+				//画像の座標を速度の数値分ずらす
+				Vector2 p = sprite_[j]->GetPosition();
+				p.y -= downSpeed; 
+				sprite_[j]->SetPosition(p);
+			}
+		}
+	} else {
+		for (int j = 0; j < MAX_IMAGE; j++) {
+			if (pos.y >= kScroll) {
+				// 画像の座標を速度の数値分ずらす
+				Vector2 p = sprite_[j]->GetPosition();
+				p.y += downSpeed;
+				sprite_[j]->SetPosition(p);
+			}
 		}
 	}
 	//ずらした座標をセット！
@@ -93,27 +126,46 @@ void Player::Loop() {
 
 void Player::Scroll() {
 	
+	
 	if (pos.y >= kScroll) {
 		scrollY = pos.y - kScroll;
 	}
 	//ローカルの座標更新
 	localPos.y = pos.y - scrollY;
+
+	ImGui::Begin("scroll");
+	ImGui::Text("%f", scrollY);
+	ImGui::End();
 }
 
 void Player::SavePos() {
 	
-
-	#pragma region
-
-	i++;
-	if (i >= 5) {
-		count++;
+	if (isEnd == false) {
+		//毎フレームごとに配列に座標を保存
+		saveFlame++;//タイマー
+		savePos[saveFlame] = pos;
+	} else {
+		localPos.y = 0;
+		//Reverse();
+		//配列の要素をデクリメントしながら代入していく
+		saveFlame --;
+		pos = savePos[saveFlame];
+		if (pos.y <= 0) {
+			isEnd = false;//デバッグ用(初期に戻す)
+		}
 	}
 
-	#pragma endregion
+	
 
-	ImGui::Begin("SavePos");
-	ImGui::Text("count:%d i:%d", count,i);
-	ImGui::End();
+}
 
+void Player::Reverse() {
+	
+	/*iii++;
+	
+	if (iii == 1) {
+		saveFlame -= 240;
+		reverseFlame = saveFlame;
+	}*/
+	
 }

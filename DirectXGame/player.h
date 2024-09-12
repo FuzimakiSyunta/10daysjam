@@ -25,6 +25,8 @@ private:
 
 	//通った座標を保存しておく関数
 	void SavePos();
+	//ゲーム終了時に巻き戻させる
+	void Reverse();
 
 	//画像をアニメーションさせる
 	void Animation();
@@ -34,6 +36,9 @@ private:
 
 private:
 	Input* input_ = nullptr;
+
+	//死亡フラグ
+	bool isEnd;
 
 	#pragma region 画像読み込み
 
@@ -60,25 +65,32 @@ private:
 	//スクロールの値
 	float scrollY = 0.0f;
 
-	const float kScroll = 220.0f;
+	float kScroll;
 
 	#pragma region SavePosに使う変数
 
-	// タイマー用変数
-	int i = 0;
+	int kDataMax = 10000;
+	//kDataMaxはsavePosとかの配列と同数にする
+	Vector2 savePos[10000] = {0}; // 座標を保存する配列
+	Vector2 sortPos[10000] = {0}; // 並び変える配列
 
+	int saveFlame;
+
+	bool reverseFlag;
+	int reverseFlame;
 
 	#pragma endregion
 
 	//アニメーション用変数
 	int flame = MAX_IMAGE;
-	//int flame = 0;
-
+	
 	
 	#pragma region デバッグ
 
 	// デバッグ用
 	int count = 0;
+
+	int iii = 0;
 
 	Vector2 bPos[MAX_IMAGE] = {0, 0};
 	
