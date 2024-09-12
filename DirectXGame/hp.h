@@ -10,6 +10,8 @@ public:
 
 	void Draw();
 
+	void DamegeDraw();
+
 	void Damege();
 
 	
@@ -19,9 +21,12 @@ public:
 private:
 	//スプライト用変数
 	Sprite* hpSprite;
+	Sprite* DamegeSprite;
 	//HPを管理する変数
 	float playerHp = 400.0f;
 
 	bool isDamege;
+	float DamegeCoolTime;
+	float DamegeingTime;
 	bool isResult = false;
 };

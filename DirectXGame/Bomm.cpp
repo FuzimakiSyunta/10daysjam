@@ -41,9 +41,9 @@ void Bomm::Update(float speed) {
 	}
 
 
-	ImGui::Begin("scroll");
+	/*ImGui::Begin("scroll");
 	ImGui::Text("X:%f", scrollY);
-	ImGui::End();
+	ImGui::End();*/
 
 }
 
