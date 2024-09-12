@@ -10,6 +10,7 @@
 #include "GameClear.h"
 #include "Scene.h"
 #include "Hp.h"
+#include "Audio.h"
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -25,6 +26,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	GameClear* gameClearScene = nullptr;
 	Stage* stage = nullptr;
 	Hp* hp = nullptr;
+	Audio* audio_ = nullptr;
+
+	uint32_t BGM_ = 0;
+	uint32_t Sound_ = 0;
 
 	// ゲームウィンドウの作成
 	win = WinApp::GetInstance();
@@ -87,6 +92,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 
 	SceneType sceneNo = SceneType::kTitle;
+	//BGM
+	audio_ = Audio::GetInstance();
+	BGM_ = audio_->LoadWave("BGM.wav");
+	Sound_ = audio_->PlayWave(BGM_, true);
+
 
 	// メインループ
 	while (true) {

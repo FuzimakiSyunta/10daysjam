@@ -20,5 +20,5 @@ private:
 	//HPを管理する変数
 	float playerHp = 400.0f;
 	//HPが自然に減るスピード
-	float hpSpeed = 50.0f;
+	float hpSpeed = 0.2f;
 };
