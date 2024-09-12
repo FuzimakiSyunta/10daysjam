@@ -53,7 +53,7 @@ public: // メンバ関数
 	bool IsGameClear() { return isGameClear; }
 	SceneType ClearScene() { return SceneType::kGameClear; }
 
-	void OnCollision();
+	void Math();
 
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;

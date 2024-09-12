@@ -20,8 +20,8 @@ public:
 
 	bool StartScroll() { return scrollStart; }
 
-	Vector2 GetPlayerPos() { return pos; };
-	Vector2 GetPlayerRad() { return rad; };
+	/*Vector2 GetPlayerPos() { return pos; };*/
+	float GetPlayerRad() { return rad; };
 
 	Vector2 GetPos() {return pos;}
 
@@ -91,7 +91,7 @@ private:
 
 
 	//当たり判定
-	Vector2 rad = {1,1};
+	float rad = 8;
 	
 	#pragma region デバッグ
 

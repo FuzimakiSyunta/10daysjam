@@ -32,8 +32,10 @@ void GameScene::Update() {
 	}
 	stage_->Update(player_->GetScroll());
 	ui_->Update(player_->GetPos());
-	if (input_->TriggerKey(DIK_SPACE)) {
-		isGameClear = true;
+
+	bool result = bomm_->Collision(player_->GetPos(),player_->GetPlayerRad());
+	if (result==true) {
+	    isGameClear = true;
 	}
 }
 
@@ -76,7 +78,6 @@ void GameScene::Draw() {
 	//stage_->Draw();
 	bomm_->Draw();
 	player_->Draw();
-	//bomm_->Draw();
 	ui_->Draw();
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
@@ -92,13 +93,4 @@ void GameScene::SceneReset() {
 	isGameClear = false;
 }
 
-void GameScene::OnCollision() { 
-	LeftTop.x = (player_->GetPlayerPos().x - player_->GetPlayerRad().x+player_->GetPlayerRad().y)/bomm_->MapSize();
-	LeftTop.y = (player_->GetPlayerPos().y - player_->GetPlayerRad().x + player_->GetPlayerRad().y) / bomm_->MapSize();
-	LeftBottom.x = (player_->GetPlayerPos().x - player_->GetPlayerRad().x + player_->GetPlayerRad().y) / bomm_->MapSize();
-	LeftBottom.y = (player_->GetPlayerPos().x - player_->GetPlayerRad().x-1 + player_->GetPlayerRad().y-1) / bomm_->MapSize();
-	RightTop.x = (player_->GetPlayerPos().x - player_->GetPlayerRad().x-1 + player_->GetPlayerRad().y-1) / bomm_->MapSize();
-	RightTop.y = (player_->GetPlayerPos().x - player_->GetPlayerRad().x  + player_->GetPlayerRad().y) / bomm_->MapSize();
-	RightBottom.x =(player_->GetPlayerPos().x - player_->GetPlayerRad().x-1 + player_->GetPlayerRad().y-1) / bomm_->MapSize();
-	RightBottom.y = (player_->GetPlayerPos().x - player_->GetPlayerRad().x - 1 + player_->GetPlayerRad().y - 1) / bomm_->MapSize();
-}
+
