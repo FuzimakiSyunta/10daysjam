@@ -40,7 +40,7 @@ private:
 	uint32_t HealTexture_ = 0;
     
     //スプライト
-	Sprite* bomsSprite_[319][7] = {nullptr};
+	Sprite* bomsSprite_[320][7] = {nullptr};
 
     //スクロール用
 	Vector2 scrollpos;
@@ -60,7 +60,7 @@ private:
 
     float bommrad = 16;
 
-	int map[319][7] = {
+	int map[320][7] = {
 	    {0, 0, 0, 0, 0, 0, 0}, 
 		{0, 0, 0, 0, 0, 0, 0},
 	    {0, 0, 0, 0, 0, 0, 0},
