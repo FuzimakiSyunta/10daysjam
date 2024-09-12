@@ -21,6 +21,8 @@ void Player::Initialize() {
 	}
 
 	#pragma endregion
+
+	scrollStart = false;
 }
 
 void Player::Update() {
@@ -94,6 +96,7 @@ void Player::Loop() {
 void Player::Scroll() {
 	
 	if (pos.y >= kScroll) {
+		scrollStart = true;
 		scrollY = pos.y - kScroll;
 	}
 	//ローカルの座標更新

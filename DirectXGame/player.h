@@ -16,6 +16,9 @@ public:
 	void Draw();
 
 	float GetScroll() { return scrollY; }
+	float GetSpeed() { return downSpeed; }
+
+	bool StartScroll() {}
 
 
 private:
@@ -82,6 +85,7 @@ private:
 
 	// デバッグ用
 	int count = 0;
+	bool scrollStart;
 
 	Vector2 bPos[MAX_IMAGE] = {0, 0};
 	

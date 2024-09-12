@@ -15,7 +15,7 @@ public:
 	/// <summary>
 	/// 更新
 	/// </summary>
-	void Update();
+	void Update(float speed);
 
 	/// <summary>
 	/// 描画
@@ -27,8 +27,10 @@ private:
 
 	// テクスチャハンドル
 	uint32_t BomsTexture_ = 0;
+	uint32_t TransparentTexture_ = 0;
+	uint32_t HealTexture_ = 0;
 
-	Sprite* bomsSprite_ = nullptr;
+	Sprite* bomsSprite_[112][7] = {nullptr};
 	
 	int blockSize = 64;
 
@@ -37,15 +39,18 @@ private:
 
 	Vector2 pos{0, 0};
 
+	Vector2 scrollpos;
+	float scrollY;
+
 	int map[112][7] = {
 	    {0, 0, 0, 0, 0, 0, 0}, 
 		{0, 0, 0, 0, 0, 0, 0},
 	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 1, 0, 0, 0},
 	    {0, 0, 0, 0, 0, 0, 0},
 	    {0, 0, 0, 0, 0, 0, 0},
 	    {0, 0, 0, 0, 0, 0, 0},
-	    {0, 0, 0, 0, 0, 0, 0},
-	    {0, 0, 0, 0, 0, 0, 0},
+	    {0, 0, 0, 1, 0, 0, 0},
 	    {0, 0, 0, 0, 0, 0, 0},
 	    {0, 0, 0, 0, 0, 0, 0},
 	    {0, 0, 0, 0, 0, 0, 0},

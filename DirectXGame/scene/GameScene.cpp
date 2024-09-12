@@ -25,7 +25,7 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 	player_->Update();
 	stage_->Update(player_->GetScroll());
-	bomm_->Update();
+	bomm_->Update(player_->GetSpeed());
 	if (input_->TriggerKey(DIK_SPACE)) {
 		isGameClear = true;
 	}
