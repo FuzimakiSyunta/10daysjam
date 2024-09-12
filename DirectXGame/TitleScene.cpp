@@ -11,6 +11,8 @@ void TitleScene::Initialize() {
 	spriteTitle_[0] = Sprite::Create(textureTitle1, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
 	spriteTitle_[1] = Sprite::Create(textureTitle2, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
 	stageSprite = Sprite::Create(stageSoil, { 0.0f, 720.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
+	stageSpritePos.y = 720.0f;
+	spriteTitlePos.y = 0;
 }
 
 void TitleScene::Update() {
@@ -76,5 +78,8 @@ void TitleScene::Draw() {
 
 void TitleScene::sceneReset() { 
 	spriteCount = 0;
+	titlePlay = false;
 	isSceneEnd = false; 
+	spriteCount = 0;
+	Initialize();
 }

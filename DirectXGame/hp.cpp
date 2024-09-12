@@ -5,10 +5,13 @@ void Hp::Initialize() {
 }
 
 void Hp::Update() { 
-	if (playerHp >= 0) {
+	if (playerHp > 0) {
 		playerHp -= hpSpeed;
 	}
 	hpSprite->SetSize({playerHp, 50.0f});
+	if (playerHp <= 0) {
+		isGameClear = true;
+	}
 }
 
 void Hp::Draw() { 

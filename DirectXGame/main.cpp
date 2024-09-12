@@ -108,29 +108,31 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			if (titleScene->IsSceneEnd()) {
 				//ゲームシーンの初期化
 				gameScene->Initialize();
-				//次のシーンの値を代入してシーン切り替え
-				sceneNo = titleScene->NextScene();
 				//タイトルシーンの初期化、フラグリセット等
 				titleScene->sceneReset();
+				//次のシーンの値を代入してシーン切り替え
+				sceneNo = titleScene->NextScene();
 			}
 			break;
 		case SceneType::kGamePlay:
 			//ゲームシーンの毎フレーム処理
 			gameScene->Update();
-			if (gameScene->IsGameClear()) {
-				// 次のシーンの値を代入してシーン切り替え
-				sceneNo = stage->ClearScene();
+			gameClearScene->SceneReset();
+			if (gameScene->IsGameClear() || hp->IsGameClear()) {
 				// ゲームシーンの初期化、フラグリセット等
 				gameScene->SceneReset();
+				// 次のシーンの値を代入してシーン切り替え
+				sceneNo = stage->ClearScene();
 			}
 			break;
 		case SceneType::kGameClear:
 			gameClearScene->Update();
+			titleScene->sceneReset();
 			if (gameClearScene->IsSceneEnd()) {
-				//次のシーンの値を代入してシーン切り替え
-				sceneNo = gameClearScene->NextScene();
 				//タイトルシーンの初期化
 				gameClearScene->SceneReset();
+				//次のシーンの値を代入してシーン切り替え
+				sceneNo = gameClearScene->NextScene();
 			}
 		}
 		// 軸表示の更新

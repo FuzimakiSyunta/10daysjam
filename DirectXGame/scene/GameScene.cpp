@@ -31,7 +31,9 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 	player_->Update();
 	hp_->Update();
-	/*stage_->Update(player_->GetScroll());*/
+	if (hp_->IsGameClear()) {
+		isGameClear = true;
+	}
 	switch (levelNo) {
 	case StageLevel::kLevel1:
 		stage_->Stage1Update();
