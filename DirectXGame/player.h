@@ -58,7 +58,7 @@ private:
 	Vector2 localPos;
 	const float speed = 2.0f;
 	const Vector2 center = {240, 360};
-	float downSpeed = 3.0f;
+	float downSpeed = 4.0f;
 
 	#pragma endregion
 
@@ -89,8 +89,6 @@ private:
 
 	// デバッグ用
 	int count = 0;
-
-	int iii = 0;
 
 	Vector2 bPos[MAX_IMAGE] = {0, 0};
 	

@@ -125,47 +125,39 @@ void Player::Loop() {
 }
 
 void Player::Scroll() {
-	
-	
+
 	if (pos.y >= kScroll) {
 		scrollY = pos.y - kScroll;
 	}
+
+
 	//ローカルの座標更新
 	localPos.y = pos.y - scrollY;
+	
 
 	ImGui::Begin("scroll");
-	ImGui::Text("%f", scrollY);
+	ImGui::Text("%f,%f", localPos.x, localPos.y);
 	ImGui::End();
 }
 
 void Player::SavePos() {
-	
+
 	if (isEnd == false) {
+		kScroll = 220;
 		//毎フレームごとに配列に座標を保存
 		saveFlame++;//タイマー
 		savePos[saveFlame] = pos;
 	} else {
-		localPos.y = 0;
-		//Reverse();
-		//配列の要素をデクリメントしながら代入していく
-		saveFlame --;
+		kScroll = 0;
 		pos = savePos[saveFlame];
+		saveFlame--;
 		if (pos.y <= 0) {
-			isEnd = false;//デバッグ用(初期に戻す)
+			isEnd = false; // デバッグ用(初期に戻す)
 		}
 	}
-
-	
 
 }
 
 void Player::Reverse() {
-	
-	/*iii++;
-	
-	if (iii == 1) {
-		saveFlame -= 240;
-		reverseFlame = saveFlame;
-	}*/
 	
 }
