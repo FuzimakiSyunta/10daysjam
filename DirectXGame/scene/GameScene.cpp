@@ -87,3 +87,7 @@ void GameScene::Draw() {
 void GameScene::SceneReset() { 
 	isGameClear = false;
 }
+
+int GameScene::GetScore() { 
+	number_ = (int)player_->GetPosY();
+	return number_; }

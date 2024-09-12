@@ -106,7 +106,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		case SceneType::kGamePlay:
 			//ゲームシーンの毎フレーム処理
 			gameScene->Update();
-			
+			gameClearScene->SetScore(gameScene->GetScore());
 			if (gameScene->IsGameClear()) {
 				// 次のシーンの値を代入してシーン切り替え
 				sceneNo = gameScene->ClearScene();

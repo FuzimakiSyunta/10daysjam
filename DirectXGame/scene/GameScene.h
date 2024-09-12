@@ -53,6 +53,8 @@ public: // メンバ関数
 	bool IsGameClear() { return isGameClear; }
 	SceneType ClearScene() { return SceneType::kGameClear; }
 
+	int GetScore();
+
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
@@ -62,6 +64,8 @@ private: // メンバ変数
 	std::unique_ptr<Stage> stage_;
 	std::unique_ptr<Bomm> bomm_;
 	std::unique_ptr<UI> ui_;
+
+	int number_ = 0;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

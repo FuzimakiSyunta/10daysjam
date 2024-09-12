@@ -14,6 +14,8 @@ class UI {
 
 	void Draw();
 
+	int GetScore() { return number; }
+
 	private:
 
 
@@ -24,6 +26,11 @@ class UI {
 
 	uint32_t mTexture = 0;
 	std::unique_ptr<Sprite> mSprite = nullptr;
+
+	std::unique_ptr<Sprite> scoreSprite2[4] = {nullptr};
 	
+	int number = 0;
+
 	#pragma endregion
+
 };

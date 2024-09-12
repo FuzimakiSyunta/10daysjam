@@ -19,6 +19,8 @@ public:
 
 	Vector2 GetPos() {return pos;}
 
+	float GetPosY() { return pos.y; }
+
 private:
 	//スクロールをする関数
 	void Scroll();

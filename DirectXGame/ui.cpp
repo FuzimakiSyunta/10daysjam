@@ -6,6 +6,7 @@ void UI::Initialize() {
 		scoreSprite[i].reset(Sprite::Create(scoreTexture, {240.0f + i * 48, 100}));
 	}
 
+
 	mTexture = TextureManager::Load("score/m.png");
 	mSprite.reset(Sprite::Create(mTexture, {440, 128}));
 
@@ -16,7 +17,7 @@ void UI::Update(Vector2 pos) {
 	#pragma region スコア更新
 
 	int eachNumber[4] = {};
-	int number = (int)pos.y / 10;
+	number = (int)pos.y / 10;
 
 	int keta = 1000;
 	for (int i = 0; i < 4; i++) {
