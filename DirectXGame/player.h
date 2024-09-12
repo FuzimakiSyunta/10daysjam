@@ -24,6 +24,9 @@ public:
 
 	Vector2 GetPos() {return pos;}
 
+	//リセット用関数
+	void Reset();
+
 private:
 	//スクロールをする関数
 	void Scroll();
@@ -36,6 +39,7 @@ private:
 
 	//画面外ループ処理
 	void Loop();
+
 
 private:
 	Input* input_ = nullptr;

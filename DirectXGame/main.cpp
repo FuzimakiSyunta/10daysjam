@@ -11,6 +11,7 @@
 #include "Scene.h"
 #include "Hp.h"
 #include "Audio.h"
+#include "Player.h"
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -92,6 +93,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 
 	SceneType sceneNo = SceneType::kTitle;
+
 	//BGM
 	audio_ = Audio::GetInstance();
 	BGM_ = audio_->LoadWave("BGM.wav");
@@ -112,12 +114,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		switch (sceneNo) { 
 		case SceneType::kTitle:
 			titleScene->Update();
-
+			stage->StageReset();
 			gameScene->SceneReset();
 
 			if (titleScene->IsSceneEnd()) {
 				//ゲームシーンの初期化
 				gameScene->Initialize();
+				stage->StageReset();
 				//タイトルシーンの初期化、フラグリセット等
 				titleScene->sceneReset();
 				//次のシーンの値を代入してシーン切り替え
@@ -131,14 +134,17 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			if (gameScene->IsGameClear() || hp->IsGameClear()) {
 				// ゲームシーンの初期化、フラグリセット等
 				gameScene->SceneReset();
+				stage->StageReset();
 				// 次のシーンの値を代入してシーン切り替え
 				sceneNo = stage->ClearScene();
 			}
 			break;
 		case SceneType::kGameClear:
 			gameClearScene->Update();
+			stage->StageReset();
 			titleScene->sceneReset();
 			if (gameClearScene->IsSceneEnd()) {
+				stage->StageReset();
 				//タイトルシーンの初期化
 				gameClearScene->SceneReset();
 				//次のシーンの値を代入してシーン切り替え
