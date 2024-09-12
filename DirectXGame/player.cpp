@@ -9,12 +9,6 @@ void Player::Initialize() {
 
 	#pragma region 初期化
 
-	isEnd = false;
-	saveFlame = 0;
-
-	reverseFlag = false;
-	reverseFlame = 0;
-
 	kScroll = 220.0f;
 
 	#pragma endregion
@@ -63,9 +57,6 @@ void Player::Update() {
 	//スクロール関数を呼ぶ
 	Scroll();
 
-	//座標保存関数を呼ぶ
-	SavePos();
-	Reverse();
 
 	//画像の座標更新
 	Animation();
@@ -146,24 +137,3 @@ void Player::Scroll() {
 	ImGui::End();
 }
 
-void Player::SavePos() {
-
-	if (isEnd == false) {
-		kScroll = 220;
-		//毎フレームごとに配列に座標を保存
-		saveFlame++;//タイマー
-		savePos[saveFlame] = pos;
-	} else {
-		kScroll = 0;
-		pos = savePos[saveFlame];
-		saveFlame--;
-		if (pos.y <= 0) {
-			isEnd = false; // デバッグ用(初期に戻す)
-		}
-	}
-
-}
-
-void Player::Reverse() {
-	
-}

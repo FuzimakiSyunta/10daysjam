@@ -31,12 +31,6 @@ public:
 private:
 	//スクロールをする関数
 	void Scroll();
-
-	//通った座標を保存しておく関数
-	void SavePos();
-	//ゲーム終了時に巻き戻させる
-	void Reverse();
-
 	//画像をアニメーションさせる
 	void Animation();
 
@@ -74,10 +68,6 @@ private:
 	const Vector2 center = {240, 360};
 	float downSpeed = 4.0f;
 
-	////デバック
-	//const float speed = 0.0f;
-	//float growSpeed = 0.0f;
-
 	#pragma endregion
 
 	//スクロールの値
@@ -85,35 +75,18 @@ private:
 
 	float kScroll;
 
-	#pragma region SavePosに使う変数
-
-	int kDataMax = 10000;
-	//kDataMaxはsavePosとかの配列と同数にする
-	Vector2 savePos[10000] = {0}; // 座標を保存する配列
-	Vector2 sortPos[10000] = {0}; // 並び変える配列
-
-	int saveFlame;
-
-	bool reverseFlag;
-	int reverseFlame;
-
-	#pragma endregion
 
 	//アニメーション用変数
 	int flame = MAX_IMAGE;
-	//int flame = 0;
 
 
 	//当たり判定
 	float rad = 8;
 	
-	#pragma region デバッグ
+	#pragma region 
 
-	// デバッグ用
-	int count = 0;
 	bool scrollStart;
 
-	Vector2 bPos[MAX_IMAGE] = {0, 0};
 	
 	#pragma endregion
 
