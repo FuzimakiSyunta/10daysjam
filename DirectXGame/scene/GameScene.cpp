@@ -23,10 +23,14 @@ void GameScene::Initialize() {
 	//UI
 	ui_ = std::make_unique<UI>();
 	ui_->Initialize();
+	//HP
+	hp_ = std::make_unique<Hp>();
+	hp_->Initialize();
 }
 
 void GameScene::Update() {
 	player_->Update();
+	hp_->Update();
 	/*stage_->Update(player_->GetScroll());*/
 	switch (levelNo) {
 	case StageLevel::kLevel1:
@@ -102,6 +106,7 @@ void GameScene::Draw() {
 		break;
 	}
 	player_->Draw();
+	hp_->Draw();
 	//bomm_->Draw();
 	ui_->Draw();
 	/// <summary>

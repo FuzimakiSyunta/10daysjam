@@ -9,6 +9,7 @@
 #include "TitleScene.h"
 #include "GameClear.h"
 #include "Scene.h"
+#include "Hp.h"
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -23,6 +24,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	TitleScene* titleScene = nullptr;
 	GameClear* gameClearScene = nullptr;
 	Stage* stage = nullptr;
+	Hp* hp = nullptr;
 
 	// ゲームウィンドウの作成
 	win = WinApp::GetInstance();
@@ -70,6 +72,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//ステージの初期化
 	stage = new Stage();
 	stage->Initialize();
+
+	//HPの初期化
+	hp = new Hp();
+	hp->Initialize();
 
 	//タイトルシーンの初期化
 	titleScene = new TitleScene();

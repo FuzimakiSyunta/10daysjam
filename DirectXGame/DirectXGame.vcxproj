@@ -112,7 +112,7 @@
     <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="Bomm.cpp" />
     <ClCompile Include="compute.cpp" />
-    <ClCompile Include="hp.cpp" />
+    <ClCompile Include="Hp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
@@ -147,7 +147,7 @@
     <ClInclude Include="Bomm.h" />
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="compute.h" />
-    <ClInclude Include="hp.h" />
+    <ClInclude Include="Hp.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="math\Matrix4x4.h" />
     <ClInclude Include="math\Vector2.h" />
