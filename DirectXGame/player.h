@@ -20,6 +20,8 @@ public:
 
 	bool StartScroll() { return scrollStart; }
 
+	Vector2 GetPlayerPos() { return pos; };
+	Vector2 GetPlayerRad() { return rad; };
 
 private:
 	//スクロールをする関数
@@ -43,6 +45,11 @@ private:
 	uint32_t playerTexture_ = 0;
 	//スプライト
 	std::unique_ptr<Sprite> playerSprite_ = nullptr;
+
+	// (範囲円)テクスチャハンドル
+	uint32_t testCircleTexture_ = 0;
+	// スプライト
+	Sprite* TestCircleSprite_ = nullptr;
 
 	uint32_t texture_[MAX_IMAGE] = {0};
 	std::unique_ptr<Sprite> sprite_[MAX_IMAGE] = {nullptr};
@@ -80,6 +87,9 @@ private:
 	int flame = MAX_IMAGE;
 	//int flame = 0;
 
+
+	//当たり判定
+	Vector2 rad = {1,1};
 	
 	#pragma region デバッグ
 

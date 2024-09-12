@@ -51,6 +51,8 @@ public: // メンバ関数
 	bool IsGameClear() { return isGameClear; }
 	SceneType ClearScene() { return SceneType::kGameClear; }
 
+	void OnCollision();
+
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
@@ -59,7 +61,15 @@ private: // メンバ変数
 	std::unique_ptr<Player> player_;
 	std::unique_ptr<Stage> stage_;
 	std::unique_ptr<Bomm> bomm_;
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
+	 
+	/// 当たり判定用
+	Vector2 LeftTop = {0,0};
+	Vector2 LeftBottom = {0, 0};
+	Vector2 RightTop = {0,0};
+	Vector2 RightBottom = {0,0};
+	
 };

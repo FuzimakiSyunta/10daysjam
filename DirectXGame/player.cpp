@@ -12,6 +12,8 @@ void Player::Initialize() {
 
 	//画像の読み込み
 	playerTexture_ = TextureManager::Load("player/root.png");
+	// 画像の読み込み
+	testCircleTexture_ = TextureManager::Load("EN.png");
 
 
 	//生成
@@ -19,6 +21,8 @@ void Player::Initialize() {
 		sprite_[j].reset(Sprite::Create(playerTexture_, pos));
 		//sprite_[j]->SetAnchorPoint({0.8f, 0.8f});
 	}
+	/*TestCircleSprite_->Sprite::Create(testCircleTexture_, pos);*/
+	/*TestCircleSprite_->SetSize(rad);*/
 
 	#pragma endregion
 
@@ -63,6 +67,7 @@ void Player::Draw() {
 	for (int j = 0; j < MAX_IMAGE ; j++) {
 		sprite_[j]->Draw();
 	}
+	/*TestCircleSprite_->Draw();*/
 }
 
 void Player::Animation() {

@@ -87,3 +87,14 @@ void GameScene::Draw() {
 void GameScene::SceneReset() { 
 	isGameClear = false;
 }
+
+void GameScene::OnCollision() { 
+	LeftTop.x = (player_->GetPlayerPos().x - player_->GetPlayerRad().x+player_->GetPlayerRad().y)/bomm_->MapSize();
+	LeftTop.y = (player_->GetPlayerPos().y - player_->GetPlayerRad().x + player_->GetPlayerRad().y) / bomm_->MapSize();
+	LeftBottom.x = (player_->GetPlayerPos().x - player_->GetPlayerRad().x + player_->GetPlayerRad().y) / bomm_->MapSize();
+	LeftBottom.y = (player_->GetPlayerPos().x - player_->GetPlayerRad().x-1 + player_->GetPlayerRad().y-1) / bomm_->MapSize();
+	RightTop.x = (player_->GetPlayerPos().x - player_->GetPlayerRad().x-1 + player_->GetPlayerRad().y-1) / bomm_->MapSize();
+	RightTop.y = (player_->GetPlayerPos().x - player_->GetPlayerRad().x  + player_->GetPlayerRad().y) / bomm_->MapSize();
+	RightBottom.x =(player_->GetPlayerPos().x - player_->GetPlayerRad().x-1 + player_->GetPlayerRad().y-1) / bomm_->MapSize();
+	RightBottom.y = (player_->GetPlayerPos().x - player_->GetPlayerRad().x - 1 + player_->GetPlayerRad().y - 1) / bomm_->MapSize();
+}
