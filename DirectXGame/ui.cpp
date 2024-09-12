@@ -2,11 +2,12 @@
 
 void UI::Initialize() {
 	scoreTexture = TextureManager::Load("score/num.png");
-
 	for (int i = 0; i < 4; i++) {
 		scoreSprite[i].reset(Sprite::Create(scoreTexture, {240.0f + i * 48, 100}));
 	}
 
+	mTexture = TextureManager::Load("score/m.png");
+	mSprite.reset(Sprite::Create(mTexture, {440, 128}));
 
 }
 
@@ -36,4 +37,5 @@ void UI::Draw() {
 	for (int i = 0; i < 4; i++) {
 		scoreSprite[i]->Draw();
 	}
+	mSprite->Draw();
 }

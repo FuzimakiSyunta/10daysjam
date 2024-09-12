@@ -3,7 +3,6 @@
 #include "TextureManager.h"
 #include "Vector2.h"
 #include "Input.h"
-#include "player.h"
 
 class UI {
 
@@ -17,14 +16,14 @@ class UI {
 
 	private:
 
-	uint32_t scoreTexture = 0;
-	std::unique_ptr<Sprite> scoreSprite[4] = {nullptr};
-
-	std::unique_ptr<Player> player_;
 
 	#pragma region スコア描画用変数
 
-	float pY = 0;
+	uint32_t scoreTexture = 0;
+	std::unique_ptr<Sprite> scoreSprite[4] = {nullptr};
 
+	uint32_t mTexture = 0;
+	std::unique_ptr<Sprite> mSprite = nullptr;
+	
 	#pragma endregion
 };
