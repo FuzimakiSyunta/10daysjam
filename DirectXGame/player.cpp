@@ -78,9 +78,9 @@ void Player::Update() {
 
 	#pragma endregion
 
-	ImGui::Begin("player");
+	/*ImGui::Begin("player");
 	ImGui::Text("X:%f Y:%f", pos.x, pos.y);
-	ImGui::End();
+	ImGui::End();*/
 
 }
 
@@ -141,9 +141,9 @@ void Player::Scroll() {
 	localPos.y = pos.y - scrollY;
 	
 
-	ImGui::Begin("scroll");
+	/*ImGui::Begin("scroll");
 	ImGui::Text("%f,%f", localPos.x, localPos.y);
-	ImGui::End();
+	ImGui::End();*/
 }
 
 void Player::SavePos() {
