@@ -47,10 +47,10 @@ void Stage::Stage2Update() {
 	// レベル２の更新
 	startStageSprite2_[0]->SetPosition(pos1);
 	startStageSprite2_[1]->SetPosition(pos2);
-	if (0 <= posY2 && posY2 <= 7200) {
+	if (0 <= posY2 && posY2 <= 7900) {
 		posY2 += 3.0f;
 	}
-	if (posY2 > 7200) {
+	if (posY2 > 7900) {
 		isLevel2Clear = true;
 	}
 }
