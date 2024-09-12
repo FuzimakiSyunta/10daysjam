@@ -18,7 +18,7 @@ public:
 	float GetScroll() { return scrollY; }
 	float GetSpeed() { return downSpeed; }
 
-	bool StartScroll() {}
+	bool StartScroll() { return scrollStart; }
 
 
 private:

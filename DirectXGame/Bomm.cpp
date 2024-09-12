@@ -6,7 +6,7 @@ void Bomm::Initialize() {
 	BomsTexture_ = TextureManager::Load("Landmine.png");
 	TransparentTexture_ = TextureManager::Load("Transparent.png");
 	HealTexture_ = TextureManager::Load("Landmine.png");
-	for (int y = 0; y < 112; y++) {
+	for (int y = 0; y < 336; y++) {
 		for (int x = 0; x < 7; x++) {
 			pos.x = (float)x * blockSize;
 			pos.y = (float)y * blockSize;
@@ -29,7 +29,7 @@ void Bomm::Update(float speed) {
 	for (int y = 0; y < MapCountY; y++) {
 		for (int x = 0; x < MapCountX; x++) {
 			Vector2 p = bomsSprite_[y][x]->GetPosition();
-			p.y -= speed;//ここやばい
+			p.y -= speed;
 			bomsSprite_[y][x]->SetPosition(p);
 		}
 	}
