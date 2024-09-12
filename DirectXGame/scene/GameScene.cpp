@@ -59,7 +59,7 @@ void GameScene::Update() {
 	stage_->Update(player_->GetScroll());
 	ui_->Update(player_->GetPos());
 
-	bool result = bomm_->Collision(player_->GetPos(),player_->GetPlayerRad());
+	bool result = bomm_->Collision(player_->GetLocalPos(),player_->GetPlayerRad());
 	if (result==true) {
 	    isGameClear = true;
 	}

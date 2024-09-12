@@ -88,7 +88,7 @@ void Player::Draw() {
 	for (int j = 0; j < MAX_IMAGE ; j++) {
 		sprite_[j]->Draw();
 	}
-	/*TestCircleSprite_->Draw();*/
+	
 }
 
 void Player::Animation() {

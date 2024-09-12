@@ -61,10 +61,10 @@ bool Bomm::Collision(Vector2 playerpos, float rad) {
 		for (int x = 0; x < MapCountX; x++) {
 			if (map[y][x]==1) {
 				Vector2 bommPos = bomsSprite_[y][x]->GetPosition();
-				float d = (playerpos.x - bommPos.x) * (playerpos.x - bommPos.x) + (playerpos.y-450 - bommPos.y) * (playerpos.y+-450 - bommPos.y);
+				float d = (playerpos.x - bommPos.x) * (playerpos.x - bommPos.x) + (playerpos.y - bommPos.y) * (playerpos.y - bommPos.y);
 				float r = (rad + bommrad) * (rad + bommrad);
 
-				if (r==d||r>d) {
+				if (d<=r&&r>d) {
 					return true;
 				}
 				

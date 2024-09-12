@@ -24,6 +24,8 @@ public:
 
 	Vector2 GetPos() {return pos;}
 
+	Vector2 GetLocalPos() { return localPos; }
+
 	float GetPosY() { return pos.y; }
 
 private:
