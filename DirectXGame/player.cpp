@@ -43,7 +43,8 @@ void Player::Update() {
 	}
 	
 	//画面外のループ関数
-	Loop();
+
+	Clamp();
 
 	//ローカルと値を合わせる
 	localPos.x = pos.x;
@@ -60,14 +61,6 @@ void Player::Update() {
 
 	//画像の座標更新
 	Animation();
-
-	#pragma region デバッグ
-
-		if (input_->PushKey(DIK_W)) {
-			isEnd = true;
-		}
-
-	#pragma endregion
 
 	ImGui::Begin("player");
 	ImGui::Text("X:%f Y:%f", pos.x, pos.y);
@@ -112,11 +105,11 @@ void Player::Animation() {
 	sprite_[flame]->SetPosition(localPos);
 }
 
-void Player::Loop() {
-	if (pos.x <= -5) {
-		pos.x = 470;
-	} else if (pos.x >= 475) {
-		pos.x = 0;
+void Player::Clamp() {
+	if (pos.x <= 10) {
+		pos.x = 10;
+	} else if (pos.x >= 435) {
+		pos.x = 435;
 	}
 }
 

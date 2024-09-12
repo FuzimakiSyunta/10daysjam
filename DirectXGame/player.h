@@ -34,8 +34,8 @@ private:
 	//画像をアニメーションさせる
 	void Animation();
 
-	//画面外ループ処理
-	void Loop();
+	//クランプ
+	void Clamp();
 
 private:
 	Input* input_ = nullptr;
@@ -64,7 +64,7 @@ private:
 
 	Vector2 pos;
 	Vector2 localPos;
-	const float speed = 2.0f;
+	const float speed = 2.6f;
 	const Vector2 center = {240, 360};
 	float downSpeed = 4.0f;
 
