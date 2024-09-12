@@ -19,30 +19,30 @@ public:
 
 	bool StartScroll() { return scrollStart; }
 
-	Vector2 GetPlayerPos() { return pos; };
-	Vector2 GetPlayerRad() { return rad; };
+	/*Vector2 GetPlayerPos() { return pos; };*/
+	float GetPlayerRad() { return rad; };
 
 	Vector2 GetPos() {return pos;}
 
-	//リセット用関数
-	void Reset();
+	Vector2 GetLocalPos() { return localPos; }
+
+	float GetPosY() { return pos.y; }
 
 private:
 	//スクロールをする関数
 	void Scroll();
-
-	//通った座標を保存しておく関数
-	void SavePos();
-
 	//画像をアニメーションさせる
 	void Animation();
 
-	//画面外ループ処理
-	void Loop();
+	//クランプ
+	void Clamp();
 
 
 private:
 	Input* input_ = nullptr;
+
+	//死亡フラグ
+	bool isEnd;
 
 	#pragma region 画像読み込み
 
@@ -65,44 +65,29 @@ private:
 
 	Vector2 pos;
 	Vector2 localPos;
-	const float speed = 2.0f;
+	const float speed = 2.6f;
 	const Vector2 center = {240, 360};
-	float downSpeed = 3.0f;
-
-	////デバック
-	//const float speed = 0.0f;
-	//float growSpeed = 0.0f;
+	float downSpeed = 4.0f;
 
 	#pragma endregion
 
 	//スクロールの値
 	float scrollY = 0.0f;
 
-	const float kScroll = 220.0f;
+	float kScroll;
 
-	#pragma region SavePosに使う変数
-
-	// タイマー用変数
-	int i = 0;
-
-
-	#pragma endregion
 
 	//アニメーション用変数
 	int flame = MAX_IMAGE;
-	//int flame = 0;
 
 
 	//当たり判定
-	Vector2 rad = {1,1};
+	float rad = 8;
 	
-	#pragma region デバッグ
+	#pragma region 
 
-	// デバッグ用
-	int count = 0;
 	bool scrollStart;
 
-	Vector2 bPos[MAX_IMAGE] = {0, 0};
 	
 	#pragma endregion
 

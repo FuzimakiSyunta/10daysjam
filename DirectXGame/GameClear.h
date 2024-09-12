@@ -28,8 +28,16 @@ public:
 	bool IsSceneEnd() { return isSceneEnd; }
 	SceneType NextScene() { return SceneType::kTitle; }
 
+	//セッター
+	int SetScore(int gameScore) { return gameScore_ = gameScore; };
+
 private:
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Sprite* clearSprite_ = nullptr;
+
+	// スコア
+	uint32_t scoreTexture = 0;
+	std::unique_ptr<Sprite> scoreSprite[4] = {nullptr};
+	int gameScore_ = 0;
 };

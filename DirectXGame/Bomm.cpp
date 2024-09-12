@@ -6,11 +6,11 @@ void Bomm::Initialize() {
 	BomsTexture_ = TextureManager::Load("Landmine.png");
 	TransparentTexture_ = TextureManager::Load("Transparent.png");
 	HealTexture_ = TextureManager::Load("Landmine.png");
-	for (int y = 0; y < 336; y++) {
+	for (int y = 0; y < 224; y++) {
 		for (int x = 0; x < 7; x++) {
 			pos.x = (float)x * blockSize;
 			pos.y = (float)y * blockSize;
-			bomsSprite_[y][x] = Sprite::Create(TransparentTexture_,pos);
+			bomsSprite_[y][x] = Sprite::Create(TransparentTexture_, pos);
 			if (map[y][x] == 1) {
 				bomsSprite_[y][x]->SetTextureHandle(BomsTexture_);
 			}
@@ -25,7 +25,7 @@ void Bomm::Initialize() {
 }
 
 void Bomm::Update(float speed) {
-
+	//スクロール速度
 	for (int y = 0; y < MapCountY; y++) {
 		for (int x = 0; x < MapCountX; x++) {
 			Vector2 p = bomsSprite_[y][x]->GetPosition();
@@ -33,6 +33,13 @@ void Bomm::Update(float speed) {
 			bomsSprite_[y][x]->SetPosition(p);
 		}
 	}
+	
+	//当たり判定検索
+	for (int y = 0; y < MapCountY; y++) {
+		for (int x = 0; x < MapCountX; x++) {
+		}
+	}
+
 
 	ImGui::Begin("scroll");
 	ImGui::Text("X:%f", scrollY);
@@ -47,4 +54,22 @@ void Bomm::Draw() {
 
 		}
 	}
+}
+
+bool Bomm::Collision(Vector2 playerpos, float rad) {
+	for (int y = 0; y < MapCountY; y++) {
+		for (int x = 0; x < MapCountX; x++) {
+			if (map[y][x]==1) {
+				Vector2 bommPos = bomsSprite_[y][x]->GetPosition();
+				float d = (playerpos.x - bommPos.x-28) * (playerpos.x - bommPos.x-28) + (playerpos.y - bommPos.y) * (playerpos.y - bommPos.y);
+				float r = (rad + bommrad) * (rad + bommrad);
+
+				if (d<=r&&r>d) {
+					return true;
+				}
+				
+			}
+		}
+	}
+	return false;
 }
