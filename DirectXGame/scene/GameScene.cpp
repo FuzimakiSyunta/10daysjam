@@ -61,7 +61,7 @@ void GameScene::Update() {
 
 	bool result = bomm_->Collision(player_->GetLocalPos(),player_->GetPlayerRad());
 	if (result==true) {
-	    isGameClear = true;
+		hp_->Damege();
 	}
 }
 

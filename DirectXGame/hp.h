@@ -10,8 +10,10 @@ public:
 
 	void Draw();
 
-	bool isGameClear = false;
-	bool IsGameClear() { return isGameClear; }
+	void Damege();
+
+	
+	bool IsGameClear() { return isResult; }
 	SceneType ClearScene() { return SceneType::kGameClear; }
 
 private:
@@ -19,6 +21,7 @@ private:
 	Sprite* hpSprite;
 	//HPを管理する変数
 	float playerHp = 400.0f;
-	//HPが自然に減るスピード
-	float hpSpeed = 0.2f;
+
+	bool isDamege;
+	bool isResult = false;
 };
