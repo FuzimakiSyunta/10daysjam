@@ -20,11 +20,31 @@ void GameScene::Initialize() {
 	// 地雷
 	bomm_ = std::make_unique<Bomm>();
 	bomm_->Initialize();
+	
 }
 
 void GameScene::Update() {
 	player_->Update();
-	stage_->Update(player_->GetScroll());
+	/*stage_->Update(player_->GetScroll());*/
+	switch (levelNo) {
+	case StageLevel::kLevel1:
+		stage_->Stage1Update();
+		if (stage_->IsLevel1Clear() == true) {
+			levelNo = stage_->Level1Clear();
+		}
+		break;
+	case StageLevel::kLevel2:
+		stage_->Stage2Update();
+		if (stage_->IsLevel2Clear() == true) {
+			levelNo = stage_->Level2Clear();
+		}
+		break;
+	case StageLevel::kLevel3:
+		stage_->Stage3Update();
+		if (stage_->IsLevel3Clear() == true) {
+			isGameClear = true;
+		}
+	}
 	bomm_->Update(player_->GetScroll());
 	if (input_->TriggerKey(DIK_SPACE)) {
 		isGameClear = true;
@@ -66,7 +86,18 @@ void GameScene::Draw() {
 	// 前景スプライト描画前処理
 	Sprite::PreDraw(commandList);
 
-	//stage_->Draw();
+
+	switch (levelNo) {
+	case StageLevel::kLevel1:
+		stage_->Stage1Draw();
+		break;
+	case StageLevel::kLevel2:
+		stage_->Stage2Draw();
+		break;
+	case StageLevel::kLevel3:
+		stage_->Stage3Draw();
+		break;
+	}
 	player_->Draw();
 	//bomm_->Draw();
 	/// <summary>

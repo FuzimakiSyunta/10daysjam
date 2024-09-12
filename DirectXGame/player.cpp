@@ -1,7 +1,6 @@
 #include "player.h"
 #include "ImGuiManager.h"
 
-
 void Player::Initialize() {
 	input_ = Input::GetInstance();
 	//座標

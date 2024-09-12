@@ -38,7 +38,11 @@ private://メンバ変数
 	Input* input_ = nullptr;
 	//スプライト
 	Sprite* spriteTitle_[2];
+	Sprite* stageSprite;
 	//タイトル画像の切り替えカウント用変数
-	int spriteNo;
-	int spriteCount;
+	int spriteCount = 0;
+	//画像のy座標変更用の変数
+	Vector2 spriteTitlePos = {0.0f, 0.0f};
+	Vector2 stageSpritePos = {0.0f, 720.0f};
+	bool titlePlay = false;
 };

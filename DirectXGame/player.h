@@ -6,7 +6,6 @@
 #include "compute.h"
 
 #define MAX_IMAGE 240
-
 class Player {
 public:
 	void Initialize();
@@ -16,6 +15,8 @@ public:
 	void Draw();
 
 	float GetScroll() { return scrollY; }
+
+	Vector2 GetPosition() { return pos; }
 
 private:
 	//スクロールをする関数

@@ -22,6 +22,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	GameScene* gameScene = nullptr;
 	TitleScene* titleScene = nullptr;
 	GameClear* gameClearScene = nullptr;
+	Stage* stage = nullptr;
 
 	// ゲームウィンドウの作成
 	win = WinApp::GetInstance();
@@ -66,6 +67,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	gameScene = new GameScene();
 	gameScene->Initialize();
 
+	//ステージの初期化
+	stage = new Stage();
+	stage->Initialize();
+
 	//タイトルシーンの初期化
 	titleScene = new TitleScene();
 	titleScene->Initialize();
@@ -104,10 +109,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		case SceneType::kGamePlay:
 			//ゲームシーンの毎フレーム処理
 			gameScene->Update();
-			
 			if (gameScene->IsGameClear()) {
 				// 次のシーンの値を代入してシーン切り替え
-				sceneNo = gameScene->ClearScene();
+				sceneNo = stage->ClearScene();
 				// ゲームシーンの初期化、フラグリセット等
 				gameScene->SceneReset();
 			}
@@ -138,7 +142,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			break;
 		case SceneType::kGameClear:
 			gameClearScene->Draw();
-			break;
 		}
 		// 軸表示の描画
 		axisIndicator->Draw();

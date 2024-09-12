@@ -6,12 +6,11 @@ void TitleScene::Initialize() {
 	//テクスチャ
 	uint32_t textureTitle1 = TextureManager::Load("Scene/TitleScene1.png "); 
 	uint32_t textureTitle2 = TextureManager::Load("Scene/TitleScene2.png");
+	uint32_t stageSoil = TextureManager::Load("Scene/StageSoil.png");
 	//スプライト生成
 	spriteTitle_[0] = Sprite::Create(textureTitle1, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
 	spriteTitle_[1] = Sprite::Create(textureTitle2, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
-	//スプライトカウント初期化
-	spriteNo = 0;
-	spriteCount = 0;
+	stageSprite = Sprite::Create(stageSoil, { 0.0f, 720.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
 }
 
 void TitleScene::Update() {
@@ -20,6 +19,18 @@ void TitleScene::Update() {
 		spriteCount = 0;
 	}
 	if (input_->TriggerKey(DIK_RETURN)) {
+		titlePlay = true;
+	}
+	if (titlePlay == true) {
+		stageSpritePos.y -= 3.0f;
+		spriteTitlePos.y -= 3.0f;
+	}
+
+	spriteTitle_[0]->SetPosition(spriteTitlePos);
+	spriteTitle_[1]->SetPosition(spriteTitlePos);
+	stageSprite->SetPosition(stageSpritePos);
+
+	if (spriteTitlePos.y <= -730) {
 		isSceneEnd = true;
 	}
 }
@@ -51,6 +62,7 @@ void TitleScene::Draw() {
 	} else if (16 <= spriteCount && spriteCount <= 30) {
 		spriteTitle_[1]->Draw();
 	}
+	stageSprite->Draw();
 
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
@@ -63,5 +75,6 @@ void TitleScene::Draw() {
 }
 
 void TitleScene::sceneReset() { 
+	spriteCount = 0;
 	isSceneEnd = false; 
 }

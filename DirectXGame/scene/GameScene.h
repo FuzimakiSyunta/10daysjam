@@ -11,6 +11,7 @@
 #include "player.h"
 #include "stage.h"
 #include "Bomm.h"
+#include "StageLevel.h"
 
 /// <summary>
 /// ゲームシーン
@@ -43,11 +44,10 @@ public: // メンバ関数
 	/// </summary>
 	void Draw();
 
-	//シーンのリセット
+	//リセット用の関数
 	void SceneReset();
 
 	bool isGameClear = false;
-
 	bool IsGameClear() { return isGameClear; }
 	SceneType ClearScene() { return SceneType::kGameClear; }
 
@@ -59,6 +59,9 @@ private: // メンバ変数
 	std::unique_ptr<Player> player_;
 	std::unique_ptr<Stage> stage_;
 	std::unique_ptr<Bomm> bomm_;
+
+	// ステージレベルの初期化
+	StageLevel levelNo = StageLevel::kLevel1;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
