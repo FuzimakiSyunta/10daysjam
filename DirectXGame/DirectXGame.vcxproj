@@ -112,11 +112,13 @@
     <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="Bomm.cpp" />
     <ClCompile Include="compute.cpp" />
+    <ClCompile Include="hp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="stage.cpp" />
+    <ClCompile Include="ui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\ImGuiManager.h" />
@@ -145,6 +147,7 @@
     <ClInclude Include="Bomm.h" />
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="compute.h" />
+    <ClInclude Include="hp.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="math\Matrix4x4.h" />
     <ClInclude Include="math\Vector2.h" />
@@ -156,6 +159,7 @@
     <ClInclude Include="StageLevel.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="stage.h" />
+    <ClInclude Include="ui.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">

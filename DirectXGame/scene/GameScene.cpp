@@ -20,7 +20,9 @@ void GameScene::Initialize() {
 	// 地雷
 	bomm_ = std::make_unique<Bomm>();
 	bomm_->Initialize();
-	
+	//UI
+	ui_ = std::make_unique<UI>();
+	ui_->Initialize();
 }
 
 void GameScene::Update() {
@@ -46,6 +48,7 @@ void GameScene::Update() {
 		}
 	}
 	bomm_->Update(player_->GetScroll());
+	ui_->Update(player_->GetPos());
 	if (input_->TriggerKey(DIK_SPACE)) {
 		isGameClear = true;
 	}
@@ -100,6 +103,7 @@ void GameScene::Draw() {
 	}
 	player_->Draw();
 	//bomm_->Draw();
+	ui_->Draw();
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>

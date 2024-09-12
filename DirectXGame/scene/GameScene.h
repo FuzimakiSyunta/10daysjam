@@ -11,6 +11,8 @@
 #include "player.h"
 #include "stage.h"
 #include "Bomm.h"
+#include "ui.h"
+
 #include "StageLevel.h"
 
 /// <summary>
@@ -62,6 +64,7 @@ private: // メンバ変数
 
 	// ステージレベルの初期化
 	StageLevel levelNo = StageLevel::kLevel1;
+	std::unique_ptr<UI> ui_;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

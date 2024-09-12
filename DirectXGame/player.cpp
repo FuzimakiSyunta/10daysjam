@@ -4,7 +4,7 @@
 void Player::Initialize() {
 	input_ = Input::GetInstance();
 	//座標
-	pos = {center.x , center.y - 400};//円の中心を中央にするために8だけ少しずらしている
+	pos = {center.x - 8 , 0 - 8};//円の中心を中央にするために8だけ少しずらしている
 	localPos = pos;
 
 	#pragma region 画像

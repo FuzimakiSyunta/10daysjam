@@ -100,6 +100,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			gameScene->SceneReset();
 
 			if (titleScene->IsSceneEnd()) {
+				//ゲームシーンの初期化
+				gameScene->Initialize();
 				//次のシーンの値を代入してシーン切り替え
 				sceneNo = titleScene->NextScene();
 				//タイトルシーンの初期化、フラグリセット等

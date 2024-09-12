@@ -16,7 +16,7 @@ public:
 
 	float GetScroll() { return scrollY; }
 
-	Vector2 GetPosition() { return pos; }
+	Vector2 GetPos() {return pos;}
 
 private:
 	//スクロールをする関数
