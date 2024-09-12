@@ -15,6 +15,12 @@ public:
 	void Draw();
 
 	float GetScroll() { return scrollY; }
+	float GetSpeed() { return downSpeed; }
+
+	bool StartScroll() { return scrollStart; }
+
+	Vector2 GetPlayerPos() { return pos; };
+	Vector2 GetPlayerRad() { return rad; };
 
 	Vector2 GetPos() {return pos;}
 
@@ -41,6 +47,11 @@ private:
 	//スプライト
 	std::unique_ptr<Sprite> playerSprite_ = nullptr;
 
+	// (範囲円)テクスチャハンドル
+	uint32_t testCircleTexture_ = 0;
+	// スプライト
+	Sprite* TestCircleSprite_ = nullptr;
+
 	uint32_t texture_[MAX_IMAGE] = {0};
 	std::unique_ptr<Sprite> sprite_[MAX_IMAGE] = {nullptr};
 
@@ -53,6 +64,10 @@ private:
 	const float speed = 2.0f;
 	const Vector2 center = {240, 360};
 	float downSpeed = 3.0f;
+
+	////デバック
+	//const float speed = 0.0f;
+	//float growSpeed = 0.0f;
 
 	#pragma endregion
 
@@ -73,11 +88,15 @@ private:
 	int flame = MAX_IMAGE;
 	//int flame = 0;
 
+
+	//当たり判定
+	Vector2 rad = {1,1};
 	
 	#pragma region デバッグ
 
 	// デバッグ用
 	int count = 0;
+	bool scrollStart;
 
 	Vector2 bPos[MAX_IMAGE] = {0, 0};
 	
