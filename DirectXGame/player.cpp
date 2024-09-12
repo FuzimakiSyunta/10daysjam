@@ -62,7 +62,7 @@ void Player::Update() {
 	//画像の座標更新
 	Animation();
 
-	ImGui::Begin("player");
+	/*ImGui::Begin("player");
 	ImGui::Text("X:%f Y:%f", pos.x, pos.y);
 	ImGui::End();*/
 
