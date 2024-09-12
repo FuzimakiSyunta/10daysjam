@@ -20,8 +20,7 @@ void Player::Initialize() {
 		sprite_[j].reset(Sprite::Create(playerTexture_, pos));
 		//sprite_[j]->SetAnchorPoint({0.8f, 0.8f});
 	}
-	/*TestCircleSprite_->Sprite::Create(testCircleTexture_, pos);*/
-	/*TestCircleSprite_->SetSize(rad);*/
+	TestCircleSprite_->Sprite::Create(testCircleTexture_, pos);
 
 	#pragma endregion
 
