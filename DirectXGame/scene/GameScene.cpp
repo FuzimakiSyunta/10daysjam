@@ -27,6 +27,9 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 	player_->Update();
+	if (player_->StartScroll()==true) {
+		bomm_->Update(player_->GetSpeed());
+	}
 	stage_->Update(player_->GetScroll());
 	bomm_->Update(player_->GetScroll());
 	ui_->Update(player_->GetPos());
@@ -61,6 +64,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -71,6 +75,7 @@ void GameScene::Draw() {
 	Sprite::PreDraw(commandList);
 
 	//stage_->Draw();
+	bomm_->Draw();
 	player_->Draw();
 	//bomm_->Draw();
 	ui_->Draw();
@@ -86,4 +91,15 @@ void GameScene::Draw() {
 
 void GameScene::SceneReset() { 
 	isGameClear = false;
+}
+
+void GameScene::OnCollision() { 
+	LeftTop.x = (player_->GetPlayerPos().x - player_->GetPlayerRad().x+player_->GetPlayerRad().y)/bomm_->MapSize();
+	LeftTop.y = (player_->GetPlayerPos().y - player_->GetPlayerRad().x + player_->GetPlayerRad().y) / bomm_->MapSize();
+	LeftBottom.x = (player_->GetPlayerPos().x - player_->GetPlayerRad().x + player_->GetPlayerRad().y) / bomm_->MapSize();
+	LeftBottom.y = (player_->GetPlayerPos().x - player_->GetPlayerRad().x-1 + player_->GetPlayerRad().y-1) / bomm_->MapSize();
+	RightTop.x = (player_->GetPlayerPos().x - player_->GetPlayerRad().x-1 + player_->GetPlayerRad().y-1) / bomm_->MapSize();
+	RightTop.y = (player_->GetPlayerPos().x - player_->GetPlayerRad().x  + player_->GetPlayerRad().y) / bomm_->MapSize();
+	RightBottom.x =(player_->GetPlayerPos().x - player_->GetPlayerRad().x-1 + player_->GetPlayerRad().y-1) / bomm_->MapSize();
+	RightBottom.y = (player_->GetPlayerPos().x - player_->GetPlayerRad().x - 1 + player_->GetPlayerRad().y - 1) / bomm_->MapSize();
 }
