@@ -113,11 +113,12 @@ void GameScene::Draw() {
 		stage_->Stage3Draw();
 		break;
 	}
-	player_->Draw();
+	
 	hp_->Draw();
 	bomm_->Draw();
 	player_->Draw();
 	ui_->Draw();
+	hp_->DamegeDraw();
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
