@@ -55,6 +55,8 @@ public: // メンバ関数
 
 	void Math();
 
+	int GetScore();
+
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
@@ -68,6 +70,8 @@ private: // メンバ変数
 	// ステージレベルの初期化
 	StageLevel levelNo = StageLevel::kLevel1;
 	std::unique_ptr<UI> ui_;
+
+	int number_ = 0;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
