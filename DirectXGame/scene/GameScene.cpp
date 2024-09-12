@@ -111,7 +111,7 @@ void GameScene::Draw() {
 	}
 	player_->Draw();
 	hp_->Draw();
-	//bomm_->Draw();
+	bomm_->Draw();
 	ui_->Draw();
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる

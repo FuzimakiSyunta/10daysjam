@@ -30,7 +30,7 @@ void TitleScene::Update() {
 	spriteTitle_[1]->SetPosition(spriteTitlePos);
 	stageSprite->SetPosition(stageSpritePos);
 
-	if (spriteTitlePos.y <= -730) {
+	if (spriteTitlePos.y <= -720) {
 		isSceneEnd = true;
 	}
 }
