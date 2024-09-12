@@ -6,7 +6,7 @@ void Bomm::Initialize() {
 	BomsTexture_ = TextureManager::Load("Landmine.png");
 	TransparentTexture_ = TextureManager::Load("Transparent.png");
 	HealTexture_ = TextureManager::Load("Landmine.png");
-	for (int y = 0; y < 236; y++) {
+	for (int y = 0; y < 319; y++) {
 		for (int x = 0; x < 7; x++) {
 			pos.x = (float)x * blockSize;
 			pos.y = (float)y * blockSize;
