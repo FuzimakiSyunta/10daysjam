@@ -9,12 +9,6 @@ void Player::Initialize() {
 
 	#pragma region 初期化
 
-	isEnd = false;
-	saveFlame = 0;
-
-	reverseFlag = false;
-	reverseFlame = 0;
-
 	kScroll = 220.0f;
 
 	#pragma endregion
@@ -49,7 +43,8 @@ void Player::Update() {
 	}
 	
 	//画面外のループ関数
-	Loop();
+
+	Clamp();
 
 	//ローカルと値を合わせる
 	localPos.x = pos.x;
@@ -63,20 +58,9 @@ void Player::Update() {
 	//スクロール関数を呼ぶ
 	Scroll();
 
-	//座標保存関数を呼ぶ
-	SavePos();
-	Reverse();
 
 	//画像の座標更新
 	Animation();
-
-	#pragma region デバッグ
-
-		if (input_->PushKey(DIK_W)) {
-			isEnd = true;
-		}
-
-	#pragma endregion
 
 	ImGui::Begin("player");
 	ImGui::Text("X:%f Y:%f", pos.x, pos.y);
@@ -121,11 +105,11 @@ void Player::Animation() {
 	sprite_[flame]->SetPosition(localPos);
 }
 
-void Player::Loop() {
-	if (pos.x <= -5) {
-		pos.x = 470;
-	} else if (pos.x >= 475) {
-		pos.x = 0;
+void Player::Clamp() {
+	if (pos.x <= 10) {
+		pos.x = 10;
+	} else if (pos.x >= 435) {
+		pos.x = 435;
 	}
 }
 
@@ -146,24 +130,3 @@ void Player::Scroll() {
 	ImGui::End();
 }
 
-void Player::SavePos() {
-
-	if (isEnd == false) {
-		kScroll = 220;
-		//毎フレームごとに配列に座標を保存
-		saveFlame++;//タイマー
-		savePos[saveFlame] = pos;
-	} else {
-		kScroll = 0;
-		pos = savePos[saveFlame];
-		saveFlame--;
-		if (pos.y <= 0) {
-			isEnd = false; // デバッグ用(初期に戻す)
-		}
-	}
-
-}
-
-void Player::Reverse() {
-	
-}
