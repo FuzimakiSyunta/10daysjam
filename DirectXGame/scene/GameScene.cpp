@@ -10,8 +10,6 @@ void GameScene::Initialize() {
 
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
-	audio_ = Audio::GetInstance();
-
 
 	//プレイヤー
 	player_ = std::make_unique<Player>();
@@ -28,6 +26,9 @@ void GameScene::Update() {
 	player_->Update();
 	stage_->Update(player_->GetScroll());
 	bomm_->Update(player_->GetScroll());
+	if (input_->TriggerKey(DIK_SPACE)) {
+		isGameClear = true;
+	}
 }
 
 void GameScene::Draw() {
@@ -65,9 +66,9 @@ void GameScene::Draw() {
 	// 前景スプライト描画前処理
 	Sprite::PreDraw(commandList);
 
-	stage_->Draw();
+	//stage_->Draw();
 	player_->Draw();
-	bomm_->Draw();
+	//bomm_->Draw();
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
@@ -76,4 +77,8 @@ void GameScene::Draw() {
 	Sprite::PostDraw();
 
 #pragma endregion
+}
+
+void GameScene::SceneReset() { 
+	isGameClear = false;
 }

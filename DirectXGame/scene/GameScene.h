@@ -7,7 +7,7 @@
 #include "Sprite.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
-
+#include "Scene.h"
 #include "player.h"
 #include "stage.h"
 #include "Bomm.h"
@@ -42,6 +42,14 @@ public: // メンバ関数
 	/// 描画
 	/// </summary>
 	void Draw();
+
+	//シーンのリセット
+	void SceneReset();
+
+	bool isGameClear = false;
+
+	bool IsGameClear() { return isGameClear; }
+	SceneType ClearScene() { return SceneType::kGameClear; }
 
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
