@@ -15,7 +15,7 @@ public:
 	/// <summary>
 	/// 更新
 	/// </summary>
-	void Update(float scroll_);
+	void Update();
 
 	/// <summary>
 	/// 描画
@@ -27,20 +27,15 @@ private:
 
 	// テクスチャハンドル
 	uint32_t BomsTexture_ = 0;
-	float scroll;
 
-	std::unique_ptr<Sprite> bomsSprite_ = nullptr;
+	Sprite* bomsSprite_ = nullptr;
 	
-	const int kBlockSize = 64;
 	int blockSize = 64;
 
 	int MapCountX = sizeof(map[0]) / sizeof(map[0][0]);
 	int MapCountY = sizeof(map) / sizeof(map[0]);
 
-	Vector2 pos;
-	float radW;
-	float radH;
-	int Gimmickmap;
+	Vector2 pos{0, 0};
 
 	int map[112][7] = {
 	    {0, 0, 0, 0, 0, 0, 0}, 

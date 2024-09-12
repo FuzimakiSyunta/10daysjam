@@ -25,7 +25,7 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 	player_->Update();
 	stage_->Update(player_->GetScroll());
-	bomm_->Update(player_->GetScroll());
+	bomm_->Update();
 	if (input_->TriggerKey(DIK_SPACE)) {
 		isGameClear = true;
 	}
@@ -57,6 +57,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -67,8 +68,9 @@ void GameScene::Draw() {
 	Sprite::PreDraw(commandList);
 
 	//stage_->Draw();
+	bomm_->Draw();
 	player_->Draw();
-	//bomm_->Draw();
+	
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
