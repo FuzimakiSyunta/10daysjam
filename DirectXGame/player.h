@@ -5,7 +5,7 @@
 #include "Input.h"
 #include "compute.h"
 
-#define MAX_IMAGE 240
+#define MAX_IMAGE 120
 class Player {
 public:
 	void Initialize();
