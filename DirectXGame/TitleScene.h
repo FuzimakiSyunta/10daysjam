@@ -38,4 +38,7 @@ private://メンバ変数
 	Input* input_ = nullptr;
 	//スプライト
 	Sprite* spriteTitle_[2];
+	//タイトル画像の切り替えカウント用変数
+	int spriteNo;
+	int spriteCount;
 };

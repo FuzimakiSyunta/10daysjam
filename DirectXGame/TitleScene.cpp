@@ -7,11 +7,18 @@ void TitleScene::Initialize() {
 	uint32_t textureTitle1 = TextureManager::Load("Scene/TitleScene1.png "); 
 	uint32_t textureTitle2 = TextureManager::Load("Scene/TitleScene2.png");
 	//スプライト生成
-	spriteTitle_[1] = Sprite::Create(textureTitle1, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
-	spriteTitle_[2] = Sprite::Create(textureTitle2, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
+	spriteTitle_[0] = Sprite::Create(textureTitle1, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
+	spriteTitle_[1] = Sprite::Create(textureTitle2, {0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f});
+	//スプライトカウント初期化
+	spriteNo = 0;
+	spriteCount = 0;
 }
 
 void TitleScene::Update() {
+	spriteCount++;
+	if (spriteCount >= 30) {
+		spriteCount = 0;
+	}
 	if (input_->TriggerKey(DIK_RETURN)) {
 		isSceneEnd = true;
 	}
@@ -39,7 +46,11 @@ void TitleScene::Draw() {
 	// 前景スプライト描画前処理
 	Sprite::PreDraw(commandList);
 
-	spriteTitle_[1]->Draw(); 
+	if (0 <= spriteCount && spriteCount <= 15) {
+		spriteTitle_[0]->Draw();
+	} else if (16 <= spriteCount && spriteCount <= 30) {
+		spriteTitle_[1]->Draw();
+	}
 
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
